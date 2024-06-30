@@ -3,9 +3,10 @@ from dotenv import find_dotenv, load_dotenv
 import time
 import logging
 from datetime import datetime
+import os
 
 load_dotenv()
-# openai.api_key = os.environ.get("OPENAI_API_KEY")
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 # defaults to getting the key using os.environ.get("OPENAI_API_KEY")
 # if you saved the key under a different environment variable name, you can do something like:
 # client = OpenAI(
@@ -39,8 +40,11 @@ model = "gpt-3.5-turbo-16k"
 # print(thread_id)
 
 # === Hardcode our ids ===
-asistant_id = "asst_7yT5g1MShqrN1534vDrqm810"
+assistant_id = "asst_7yT5g1MShqrN1534vDrqm810"
 thread_id = "thread_kr871DUEaGcTXkBb2jHO9eJ6"
+
+assistant_id = "asst_sAs0G731AGHiFHJF7KWxkcY4" # thread_id for the personal trainer assistant
+thread_id = "thread_4vUkQSl5Hrw6yUOXup4FxJu0"
 
 # ==== Create a Message ====
 message = "How many reps do I need to do to build lean muscles?"
@@ -51,7 +55,7 @@ message = client.beta.threads.messages.create(
 # === Run our Assistant ===
 run = client.beta.threads.runs.create(
     thread_id=thread_id,
-    assistant_id=asistant_id,
+    assistant_id=assistant_id,
     instructions="Please address the user as James Bond",
 )
 
